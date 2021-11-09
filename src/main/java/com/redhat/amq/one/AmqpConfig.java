@@ -16,31 +16,31 @@ public class AmqpConfig
 
    @Value("${amqp.broker.scheme}")
    private String amqpBrokerScheme;
-   
+
    @Value("${amqp.broker.host}")
    private String amqpBrokerHost;
-   
+
    @Value("${amqp.broker.port}")
    private String amqpBrokerPort;
-   
+
    @Value("${jms.username}")
    private String jmsUsername;
-   
+
    @Value("${jms.password}")
    private String jmsPassword;
-   
+
    @Value("${transport.keyStoreLocation}")
    private String transportKeyStoreLocation;
-   
+
    @Value("${transport.keyStorePassword}")
    private String transportKeyStorePassword;
-   
+
    @Value("${transport.trustStoreLocation}")
    private String transportTrustStoreLocation;
-   
+
    @Value("${transport.trustStorePassword}")
    private String transportTrustStorePassword;
-   
+
    @Value("${transport.verifyHost}")
    private String transportVerifyHost;
 
@@ -49,9 +49,6 @@ public class AmqpConfig
    {
       return (factory) ->
       {
-//         factory.setUsername(jmsUsername);
-//         factory.setPassword(jmsPassword);
-//         factory.setPopulateJMSXUserID(true);
          factory.setRemoteURI(remoteUri());
       };
    }
@@ -66,17 +63,13 @@ public class AmqpConfig
             .path("/")
             .queryParam("jms.username", jmsUsername)
             .queryParam("jms.password", jmsPassword)
-//            .queryParam("transport.trustAll", "true")
-//            .queryParam("transport.useOpenSSL", "true")
-//            .queryParam("transport.keyStoreLocation", transportKeyStoreLocation)
-//            .queryParam("transport.keyStorePassword", transportKeyStorePassword)
             .queryParam("transport.trustStoreLocation", transportTrustStoreLocation)
             .queryParam("transport.trustStorePassword", transportTrustStorePassword)
             .queryParam("transport.verifyHost", transportVerifyHost)
             .build();
-      
+
       LOG.debug(uriComponents.toUriString());
-      
+
       return uriComponents.toUriString();
    }
 

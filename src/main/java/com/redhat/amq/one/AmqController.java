@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AmqController
 {
 
-   @Autowired 
+   @Autowired
    private Producer producer;
-   
+
    @GetMapping("/send")
-   public String send() {
-      
+   public String send()
+   {
+
       producer.sendMessage("Some stupid text message");
-      
+
       return "home";
    }
 }
