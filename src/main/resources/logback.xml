@@ -11,7 +11,7 @@
     </root>
     <logger name="org.apache.qpid" level="info"/>
     <logger name="org.apache.qpid.jms.util.MetaDataSupport" level="info"/>
-    <logger name="org.springframework.jms" level="debug"/>
-    <logger name="org.springframework.jms.annotation" level="debug"/>
+    <logger name="org.springframework.jms" level="info"/>
+    <logger name="org.springframework.jms.annotation" level="info"/>
     <logger name="com.redhat" level="trace"/>
 </configuration>

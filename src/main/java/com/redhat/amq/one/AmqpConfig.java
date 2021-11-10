@@ -23,12 +23,6 @@ public class AmqpConfig {
     @Value("${amqp.broker.port}")
     private String amqpBrokerPort;
 
-    @Value("${jms.username}")
-    private String jmsUsername;
-
-    @Value("${jms.password}")
-    private String jmsPassword;
-
     @Value("${transport.trustStoreLocation}")
     private String transportTrustStoreLocation;
 
@@ -37,9 +31,10 @@ public class AmqpConfig {
 
     @Value("${transport.verifyHost}")
     private String transportVerifyHost;
-
+    
     @Bean
     public AMQP10JMSConnectionFactoryCustomizer myAMQP10Configuration() {
+               
         return (factory)
                 -> {
             factory.setRemoteURI(remoteUri());
@@ -53,8 +48,6 @@ public class AmqpConfig {
                 .host(amqpBrokerHost)
                 .port(amqpBrokerPort)
                 .path("/")
-                .queryParam("jms.username", jmsUsername)
-                .queryParam("jms.password", jmsPassword)
                 .queryParam("transport.trustStoreLocation", transportTrustStoreLocation)
                 .queryParam("transport.trustStorePassword", transportTrustStorePassword)
                 .queryParam("transport.verifyHost", transportVerifyHost)
