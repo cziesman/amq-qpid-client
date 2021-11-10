@@ -5,18 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AmqController
-{
+public class AmqpController {
 
-   @Autowired
-   private Producer producer;
+    @Autowired
+    private Producer producer;
 
-   @GetMapping("/send")
-   public String send()
-   {
+    @GetMapping("/send")
+    public String send() {
 
-      producer.sendMessage("Some stupid text message");
+        producer.sendMessage("Some stupid text message");
 
-      return "home";
-   }
+        return "home";
+    }
+
 }

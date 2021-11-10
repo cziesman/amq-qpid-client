@@ -7,15 +7,15 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Producer
-{
-   private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
+public class Producer {
 
-   @Autowired
-   public JmsTemplate jmsTemplate;
+    private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
 
-   public void sendMessage(String payload)
-   {
-      this.jmsTemplate.convertAndSend("test.foo", payload);
-   }
+    @Autowired
+    public JmsTemplate jmsTemplate;
+
+    public void sendMessage(String payload) {
+        this.jmsTemplate.convertAndSend("test.foo", payload);
+    }
+
 }

@@ -10,67 +10,59 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Configuration
-public class AmqpConfig
-{
-   private static final Logger LOG = LoggerFactory.getLogger(AmqpConfig.class);
+public class AmqpConfig {
 
-   @Value("${amqp.broker.scheme}")
-   private String amqpBrokerScheme;
+    private static final Logger LOG = LoggerFactory.getLogger(AmqpConfig.class);
 
-   @Value("${amqp.broker.host}")
-   private String amqpBrokerHost;
+    @Value("${amqp.broker.scheme}")
+    private String amqpBrokerScheme;
 
-   @Value("${amqp.broker.port}")
-   private String amqpBrokerPort;
+    @Value("${amqp.broker.host}")
+    private String amqpBrokerHost;
 
-   @Value("${jms.username}")
-   private String jmsUsername;
+    @Value("${amqp.broker.port}")
+    private String amqpBrokerPort;
 
-   @Value("${jms.password}")
-   private String jmsPassword;
+    @Value("${jms.username}")
+    private String jmsUsername;
 
-   @Value("${transport.keyStoreLocation}")
-   private String transportKeyStoreLocation;
+    @Value("${jms.password}")
+    private String jmsPassword;
 
-   @Value("${transport.keyStorePassword}")
-   private String transportKeyStorePassword;
+    @Value("${transport.trustStoreLocation}")
+    private String transportTrustStoreLocation;
 
-   @Value("${transport.trustStoreLocation}")
-   private String transportTrustStoreLocation;
+    @Value("${transport.trustStorePassword}")
+    private String transportTrustStorePassword;
 
-   @Value("${transport.trustStorePassword}")
-   private String transportTrustStorePassword;
+    @Value("${transport.verifyHost}")
+    private String transportVerifyHost;
 
-   @Value("${transport.verifyHost}")
-   private String transportVerifyHost;
+    @Bean
+    public AMQP10JMSConnectionFactoryCustomizer myAMQP10Configuration() {
+        return (factory)
+                -> {
+            factory.setRemoteURI(remoteUri());
+        };
+    }
 
-   @Bean
-   public AMQP10JMSConnectionFactoryCustomizer myAMQP10Configuration()
-   {
-      return (factory) ->
-      {
-         factory.setRemoteURI(remoteUri());
-      };
-   }
+    private String remoteUri() {
 
-   private String remoteUri()
-   {
+        UriComponents uriComponents = UriComponentsBuilder.newInstance()
+                .scheme(amqpBrokerScheme)
+                .host(amqpBrokerHost)
+                .port(amqpBrokerPort)
+                .path("/")
+                .queryParam("jms.username", jmsUsername)
+                .queryParam("jms.password", jmsPassword)
+                .queryParam("transport.trustStoreLocation", transportTrustStoreLocation)
+                .queryParam("transport.trustStorePassword", transportTrustStorePassword)
+                .queryParam("transport.verifyHost", transportVerifyHost)
+                .build();
 
-      UriComponents uriComponents = UriComponentsBuilder.newInstance()
-            .scheme(amqpBrokerScheme)
-            .host(amqpBrokerHost)
-            .port(amqpBrokerPort)
-            .path("/")
-            .queryParam("jms.username", jmsUsername)
-            .queryParam("jms.password", jmsPassword)
-            .queryParam("transport.trustStoreLocation", transportTrustStoreLocation)
-            .queryParam("transport.trustStorePassword", transportTrustStorePassword)
-            .queryParam("transport.verifyHost", transportVerifyHost)
-            .build();
+        LOG.debug(uriComponents.toUriString());
 
-      LOG.debug(uriComponents.toUriString());
-
-      return uriComponents.toUriString();
-   }
+        return uriComponents.toUriString();
+    }
 
 }
