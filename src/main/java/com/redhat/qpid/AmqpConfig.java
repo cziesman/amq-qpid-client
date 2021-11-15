@@ -1,4 +1,4 @@
-package com.redhat.amq.one;
+package com.redhat.qpid;
 
 import org.amqphub.spring.boot.jms.autoconfigure.AMQP10JMSConnectionFactoryCustomizer;
 import org.slf4j.Logger;

@@ -1,11 +1,11 @@
-package com.redhat.amq.one;
+package com.redhat.qpid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AmqpController {
+public class MessageController {
 
     @Autowired
     private Producer producer;
@@ -13,7 +13,7 @@ public class AmqpController {
     @GetMapping("/send")
     public String send() {
 
-        producer.sendMessage("Some stupid text message");
+        producer.sendMessage("Some useless message content.");
 
         return "home";
     }

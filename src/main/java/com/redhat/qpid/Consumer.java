@@ -1,4 +1,4 @@
-package com.redhat.amq.one;
+package com.redhat.qpid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ public class Consumer {
 
     private static final Logger LOG = LoggerFactory.getLogger(Consumer.class);
 
-    @JmsListener(destination = "test.foo")
+    @JmsListener(destination = "${queue.name}")
     public void processMsg(String message) {
         LOG.info("============= Received: " + message);
     }

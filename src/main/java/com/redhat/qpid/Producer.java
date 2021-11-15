@@ -1,4 +1,4 @@
-package com.redhat.amq.one;
+package com.redhat.qpid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

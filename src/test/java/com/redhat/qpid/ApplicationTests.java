@@ -1,4 +1,4 @@
-package com.redhat.amq.one;
+package com.redhat.qpid;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
