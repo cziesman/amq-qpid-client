@@ -11,10 +11,10 @@
     </parent>
     
     <groupId>com.redhat</groupId>
-    <artifactId>amq.one</artifactId>
+    <artifactId>qpid</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>amq.one</name>
-    <description>AMQ client for OCP</description>
+    <name>qpid</name>
+    <description>Qpid client for AMQ on OCP</description>
     
     <properties>
         <java.version>11</java.version>
