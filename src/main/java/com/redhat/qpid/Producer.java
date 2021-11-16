@@ -12,14 +12,14 @@ public class Producer {
 
     private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
 
-    @Value("${queue.name}")
-    private String queueName;
+    @Value("${destination.name}")
+    private String destinationName;
 
     @Autowired
     public JmsTemplate jmsTemplate;
 
     public void sendMessage(String payload) {
-        this.jmsTemplate.convertAndSend(queueName, payload);
+        this.jmsTemplate.convertAndSend(destinationName, payload);
     }
 
 }
