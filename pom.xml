@@ -16,10 +16,6 @@
     <name>qpid</name>
     <description>Qpid client for AMQ on OCP</description>
     
-    <properties>
-        <java.version>11</java.version>
-    </properties>
-    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -48,17 +44,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
-<!--            <version>5.3.12</version>-->
         </dependency>
         <dependency>
             <groupId>org.apache.qpid</groupId>
             <artifactId>qpid-jms-client</artifactId>
             <version>0.59.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.messaginghub</groupId>
-            <artifactId>pooled-jms</artifactId>
-            <version>2.0.2</version>
         </dependency>
 
         <dependency>
