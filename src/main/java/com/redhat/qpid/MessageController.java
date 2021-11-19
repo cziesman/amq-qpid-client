@@ -12,7 +12,7 @@ public class MessageController {
 
     @GetMapping("/")
     public String index() {
-        
+
         return "redirect:/send";
     }
 
