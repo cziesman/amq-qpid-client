@@ -12,6 +12,7 @@ public class Consumer {
 
     @JmsListener(destination = "${destination.name}")
     public void processMsg(String message) {
+
         LOG.info("============= Received: " + message);
     }
 

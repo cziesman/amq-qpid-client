@@ -60,7 +60,6 @@ public class JmsConfig {
 
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
-        factory.setCacheLevel(25);
 
         return factory;
     }
@@ -100,8 +99,7 @@ public class JmsConfig {
 
         LOG.debug(uriComponents.toUriString());
 
-        LOG.debug(uriComponents.toUriString());
-
         return String.format("failover:(%s)", uriComponents.toUriString());
     }
+
 }
