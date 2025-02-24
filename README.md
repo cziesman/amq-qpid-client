@@ -1,9 +1,9 @@
 # Overview
 This project provides a simple Spring Boot application that uses Apache QPid to connect to an AMQ Artemis broker running in Openshift.
 
-The connections is made using the AMQPS protocol over a TLS/SSL connection to port 443.
+The connection is made using the AMQPS protocol over a TLS/SSL connection to port 443.
 
-## Generating credentials for TLS connections
+## Generate credentials for TLS connections
 
 For TLS connections, AMQ requires a broker keystore, a client keystore, and a client truststore that includes the broker keystore. In the next section, we will create a broker keystore, export the broker certificate, create a client truststore, import the broker certificate into the client truststore, and then create a broker truststore.
 
@@ -21,11 +21,11 @@ Create a client truststore that imports the broker certificate:
 
     keytool -import -alias broker -keystore client.ts -file broker_cert
 
-Generate a self-signed certificate for the broker trust store:
+Generate a self-signed certificate for the broker truststore:
 
     keytool -genkey -alias broker -keyalg RSA -keystore broker.ts
 
-Note: When you import the broker_cert make sure that you specify yes to the dialog: `Trust this certificate? [no]:  yes`. The default setting is `no`.
+Note: When you import `broker_cert` make sure that you specify yes to the dialog: `Trust this certificate? [no]:  yes`. The default setting is `no`.
 
 ### Create the secret name
 
@@ -33,11 +33,11 @@ By default, the secret name has the following format:
 
     <CustomResourceName>-<AcceptorName>-secret
 
-Following this format, we have named the secret `ex-aao-amqp-secret`. You can use whatever naming format you like. We will provide this secret name in the custom resource for ActiveMQ Artemis.
+Following this format, we have named the secret `ex-aao-amqp-secret`, but you can use whatever naming convention you prefer. We will provide this secret name in the custom resource for ActiveMQ Artemis.
 
-### Configure OpenShift
+### Configure AMQ on OpenShift
 
-Log into thr OpenShift cluster as a system admin, create a project named amq-demo, and create a secret for the project.
+Log into the OpenShift cluster as a system admin, create a project named `amq-demo`, and create a secret for the project.
 
 #### Log into OpenShift:
 
